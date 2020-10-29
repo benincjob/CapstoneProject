@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>View Customer</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>View Customer</h1>
+        <a th:href="@{/customers}">Back to Customer List</a>
+        <br/><br/>
+        <div th:if="${customer}">
+            <table border="1">
+                <tr>
+                    <td>Customer ID</td>
+                    <td>:</td>
+                    <td th:utext="${customer.id}">...</td>          
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>:</td>
+                    <td th:utext="${customer.firstname}">...</td>             
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>:</td>
+                    <td th:utext="${customer.lastname}">...</td>              
+                </tr>
+                <tr>
+                    <td>Account Number</td>
+                    <td>:</td>
+                    <td th:utext="${customer.accountnumber}">...</td>
+                </tr>
+                <tr>
+                    <td>Product Id</td>
+                    <td>:</td>
+                    <td th:utext="${customer.productid}">...</td>
+                </tr>
+                <tr>
+                    <td>SSN</td>
+                    <td>:</td>
+                    <td th:utext="${customer.ssn}">...</td>
+                </tr>
+            </table>
+            <br/><br/>
+            <div th:if="not ${allowDelete}">
+                <a th:href="@{/customers/{customerId}/edit(customerId=${customer.id})}">Edit</a> |
+                <a th:href="@{/customers/{customerId}/delete(customerId=${customer.id})}">Delete</a>
+            </div>
+            <form th:if="${allowDelete}" th:action="@{/contacts/{customerId}/delete(customerId=${customer.id})}" method="POST">
+                Delete this customer? <input type="submit" th:value="Yes" />
+            </form>
+        </div>
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>        
+    </body>
+</html>  

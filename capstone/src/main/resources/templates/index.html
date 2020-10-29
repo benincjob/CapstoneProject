@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+     <head>
+     <meta charset="ISO-8859-1">
+     <title>Customer List</title>
+     </head>
+     <body>
+          <div>
+          <h1>Customer Portal</h1>
+          </div>
+          <div>
+             <nobr>
+                <a th:href="@{/customers}">Customer List</a>
+                <br/><br/>
+                <a th:href="@{/customers/add}">Add Customer</a>
+                <br/><br/>
+                <a th:href="@{/products}">Product List</a>
+                <br/><br/>
+             </nobr>
+          </div>
+     </body>
+</html>

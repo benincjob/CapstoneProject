@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="thymeleaf.org">
+
+ 
+	<head>
+		<meta charset="ISO-8859-1">
+		<title th:text="${add} ? 'Create a Customer' : 'Edit a Customer'"/>
+	</head>
+	<body>
+ 
+		<h1 th:text="${add} ? 'Create a Customer' : 'Edit a Customer'"/>
+		<br/><br/>
+		<form th:action="${add} ? @{/customers/add} : @{/customers/{customerId}/edit(customerId=${customer.id})}"
+		      th:object="${customer}" method="POST">
+	      <table border="0">
+	          <tr th:if="${customer.id}">
+	              <td>Customer ID</td>
+	              <td>:</td>
+	              <td th:utext="${customer.id}">...</td>             
+	          </tr>
+               <tr>
+                   <td>First Name</td>
+                   <td>:</td>
+                   <td><input type="text" th:field="*{firstname}" /></td>              
+               </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{lastname}" /></td>              
+                </tr>
+                <tr>
+                    <td>Account Number</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{accountnumber}" /></td>              
+                </tr>
+                </tr>
+                <tr>
+                    <td>Product ID</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{productid}" /></td>              
+                </tr>
+                </tr>
+                <tr>
+                    <td>SSN</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{ssn}" /></td>              
+                </tr>
+            </table>
+            <input type="submit" th:value="${add} ? 'Add' : 'Update'" />
+		</form>
+		<br/>
+     
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />   
+        
+	</body>
+</html>
